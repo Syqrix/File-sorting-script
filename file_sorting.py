@@ -11,7 +11,7 @@ class App:
         self.audios_folder: str = Path("audios")
         self.archives_folder: str = Path("archives")
         self.executables_folder: str = Path("executables")
-        self.code_folder: str = Path("code_base")
+        self.code_folder: str = Path("code/")
 
         self.folders_templates_advance: tuple = (self.documents_folder,
                                                  self.pictures_folder,
@@ -25,7 +25,7 @@ class App:
                                                 self.pictures_folder,
                                                 self.videos_folder,
                                                 self.audios_folder,
-                                                self.archives_folder,)
+                                                self.archives_folder)
 
         self.documents_suffixes: tuple = (
             ".txt", ".rtf", ".doc", ".odt", ".pdf", ".csv", ".json", ".xml",
@@ -64,7 +64,7 @@ class App:
             print(f"{key}: {text}")
 
         user_answer: int = self.int_validator(
-            input("What mode do you want to use? "), "What mode do you want to use? ")
+            input("\nWhat mode do you want to use? "), "What mode do you want to use? ")
 
         _, func = operations[user_answer]
         func()
