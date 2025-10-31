@@ -11,7 +11,8 @@ class App:
         self.audios_folder: str = Path("audios")
         self.archives_folder: str = Path("archives")
         self.executables_folder: str = Path("executables")
-        self.code_folder: str = Path("code")
+        self.code_folder: str = Path("code_base")
+
         self.folders_templates_advance: tuple = (self.documents_folder,
                                                  self.pictures_folder,
                                                  self.videos_folder,
@@ -25,21 +26,28 @@ class App:
                                                 self.videos_folder,
                                                 self.audios_folder,
                                                 self.archives_folder,)
+
         self.documents_suffixes: tuple = (
             ".txt", ".rtf", ".doc", ".odt", ".pdf", ".csv", ".json", ".xml",
             ".html", ".doc", "", ".docx", ".htm")
+
         self.pictures_suffixes: tuple = (".jpg", ".jpeg", ".jfif", ".png",
                                          ".gif", ".bmp", ".tif", ".tiff", ".svg",
                                          ".webp")
+
         self.videos_suffixes: tuple = (".mp4", ".m4v", ".mkv", ".avi", ".mov",
                                        ".wmv", ".flv", ".swf", ".webm", ".mpg",
                                        ".mpeg", ".mts", ".m2ts")
+
         self.audios_suffixes: tuple = (".mp3", ".wav", ".aac", ".m4a", ".flac",
                                        ".ogg", ".opus", ".wma", ".aiff")
+
         self.archievs_suffixes: tuple = (".zip", ".rar", ".7z", ".tar", ".gz",
                                          ".bz2", ".iso", ".torrent")
+
         self.executable_suffixes: tuple = (".exe", ".dll", ".sh", ".bat",
                                            ".cmd", ".app", ".dmg")
+
         self.code_suffixes: tuple = (".py", ".c", ".cpp", ".java", ".db",
                                      ".sqlite", ".xls", ".xlsx")
 
@@ -69,6 +77,10 @@ class App:
                 continue
             elif not user_text.isdigit():
                 print("Only numbers!")
+                user_text = input(string)
+                continue
+            elif int(user_text) not in range(1, 3):
+                print("Only 1 or 2!")
                 user_text = input(string)
                 continue
             else:
