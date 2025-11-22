@@ -12,6 +12,10 @@ class App:
         self.archives_folder: str = Path("archives")
         self.executables_folder: str = Path("executables")
         self.code_folder: str = Path("code/")
+        self.dirs = (
+            self.documents_folder, self.pictures_folder, self.videos_folder,
+            self.audios_folder, self.archives_folder, self.executables_folder,
+            self.code_folder)
 
         self.folders_templates_advance: tuple = (self.documents_folder,
                                                  self.pictures_folder,
@@ -32,8 +36,8 @@ class App:
             ".html", ".doc", "", ".docx", ".htm")
 
         self.pictures_suffixes: tuple = (".jpg", ".jpeg", ".jfif", ".png",
-                                         ".gif", ".bmp", ".tif", ".tiff", ".svg",
-                                         ".webp")
+                                         ".gif", ".bmp", ".tif", ".tiff",
+                                         ".svg", ".webp")
 
         self.videos_suffixes: tuple = (".mp4", ".m4v", ".mkv", ".avi", ".mov",
                                        ".wmv", ".flv", ".swf", ".webm", ".mpg",
@@ -64,7 +68,8 @@ class App:
             print(f"{key}: {text}")
 
         user_answer: int = self.int_validator(
-            input("\nWhat mode do you want to use? "), "What mode do you want to use? ")
+            input("\nWhat mode do you want to use? "),
+            "What mode do you want to use? ")
 
         _, func = operations[user_answer]
         func()
@@ -94,6 +99,8 @@ class App:
         for i in self.current_dir.iterdir():
             if i.is_dir():
                 continue
+            elif i.exists() in self.dirs:
+                i.unlink()
             else:
                 if PurePath(i).suffix in self.audios_suffixes:
                     shutil.move(i, self.audios_folder)
