@@ -1,5 +1,6 @@
 from pathlib import Path, PurePath
 import shutil
+import os
 
 
 class App:
@@ -12,10 +13,6 @@ class App:
         self.archives_folder: str = Path("archives")
         self.executables_folder: str = Path("executables")
         self.code_folder: str = Path("code/")
-        self.dirs = (
-            self.documents_folder, self.pictures_folder, self.videos_folder,
-            self.audios_folder, self.archives_folder, self.executables_folder,
-            self.code_folder)
 
         self.folders_templates_advance: tuple = (self.documents_folder,
                                                  self.pictures_folder,
@@ -99,19 +96,37 @@ class App:
         for i in self.current_dir.iterdir():
             if i.is_dir():
                 continue
-            elif i.exists() in self.dirs:
-                i.unlink()
             else:
-                if PurePath(i).suffix in self.audios_suffixes:
-                    shutil.move(i, self.audios_folder)
-                elif PurePath(i).suffix in self.videos_suffixes:
-                    shutil.move(i, self.videos_folder)
-                elif PurePath(i).suffix in self.archievs_suffixes:
-                    shutil.move(i, self.archives_folder)
-                elif PurePath(i).suffix in self.pictures_suffixes:
-                    shutil.move(i, self.pictures_folder)
-                elif PurePath(i).suffix in self.documents_suffixes:
-                    shutil.move(i, self.documents_folder)
+                if i.suffix in self.audios_suffixes:
+                    destination = self.audios_folder / i.name
+                    if destination.exists():
+                        i.unlink()
+                    else:
+                        shutil.move(i, self.audios_folder)
+                elif i.suffix in self.videos_suffixes:
+                    destination = self.videos_folder / i.name
+                    if destination.exists():
+                        i.unlink()
+                    else:
+                        shutil.move(i, self.videos_folder)
+                elif i.suffix in self.archievs_suffixes:
+                    destination = self.archives_folder / i.name
+                    if destination.exists():
+                        i.unlink()
+                    else:
+                        shutil.move(i, self.archives_folder)
+                elif i.suffix in self.pictures_suffixes:
+                    destination = self.pictures_folder / i.name
+                    if destination.exists():
+                        i.unlink()
+                    else:
+                        shutil.move(i, self.pictures_folder)
+                elif i.suffix in self.documents_suffixes:
+                    destination = self.documents_folder / i.name
+                    if destination.exists():
+                        i.unlink()
+                    else:
+                        shutil.move(i, self.documents_folder)
                 else:
                     continue
         print("Done!")
@@ -125,18 +140,42 @@ class App:
             if i.is_dir():
                 continue
             else:
-                if PurePath(i).suffix in self.audios_suffixes:
-                    shutil.move(i, self.audios_folder)
-                elif PurePath(i).suffix in self.videos_suffixes:
-                    shutil.move(i, self.videos_folder)
-                elif PurePath(i).suffix in self.archievs_suffixes:
-                    shutil.move(i, self.archives_folder)
-                elif PurePath(i).suffix in self.pictures_suffixes:
-                    shutil.move(i, self.pictures_folder)
-                elif PurePath(i).suffix in self.documents_suffixes:
-                    shutil.move(i, self.documents_folder)
+                if i.suffix in self.audios_suffixes:
+                    destination = self.audios_folder / i.name
+                    if destination.exists():
+                        i.unlink()
+                    else:
+                        shutil.move(i, self.audios_folder)
+                elif i.suffix in self.videos_suffixes:
+                    destination = self.videos_folder / i.name
+                    if destination.exists():
+                        i.unlink()
+                    else:
+                        shutil.move(i, self.videos_folder)
+                elif i.suffix in self.archievs_suffixes:
+                    destination = self.archives_folder / i.name
+                    if destination.exists():
+                        i.unlink()
+                    else:
+                        shutil.move(i, self.archives_folder)
+                elif i.suffix in self.pictures_suffixes:
+                    destination = self.pictures_folder / i.name
+                    if destination.exists():
+                        i.unlink()
+                    else:
+                        shutil.move(i, self.pictures_folder)
+                elif i.suffix in self.documents_suffixes:
+                    destination = self.documents_folder / i.name
+                    if destination.exists():
+                        i.unlink()
+                    else:
+                        shutil.move(i, self.documents_folder)
                 elif PurePath(i).suffix in self.executable_suffixes:
-                    shutil.move(i, self.executables_folder)
+                    destination = self.executables_folder / i.name
+                    if destination.exists():
+                        i.unlink()
+                    else:
+                        shutil.move(i, self.executables_folder)
                 elif PurePath(i).suffix in self.code_suffixes:
                     shutil.move(i, self.code_folder)
                 else:
