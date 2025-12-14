@@ -1,6 +1,5 @@
-from pathlib import Path, PurePath
 import shutil
-import os
+from pathlib import Path, PurePath
 
 
 class App:
@@ -71,7 +70,8 @@ class App:
         _, func = operations[user_answer]
         func()
 
-    def int_validator(self, user_text: str, string: str) -> int:
+    @staticmethod
+    def int_validator(user_text: str, string: str) -> int:
         while True:
             if not user_text:
                 print("Type the number!")
